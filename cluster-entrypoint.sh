@@ -4,8 +4,9 @@ set -ex
 
 rabbitmq-server -detached
 
-# Wait for start server
-sleep 3
+# Waits for the RabbitMQ application to start on the target node
+sleep 2
+rabbitmqctl await_startup
 
 rabbitmqctl stop_app
 rabbitmqctl join_cluster rabbit@rabbitmq1
