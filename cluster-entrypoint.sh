@@ -5,12 +5,18 @@ set -ex
 rabbitmq-server -detached
 
 # Waits for the RabbitMQ application to start on the target node
-sleep 2
+sleep ${WAIT_INTERVAL:-3}
 rabbitmqctl await_startup
 
 rabbitmqctl stop_app
+
+# Waits stop application
+sleep ${WAIT_INTERVAL:-3}
 rabbitmqctl join_cluster rabbit@rabbitmq1
+
 rabbitmqctl start_app
+rabbitmqctl await_startup
+
 
 if [ "$HOSTNAME" == rabbitmq2 ]; then
     rabbitmqctl add_user ${RABBITMQ_USER} ${RABBITMQ_PASS}
