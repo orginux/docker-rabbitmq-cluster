@@ -19,6 +19,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
     entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    restart: always
 
   rabbitmq3:
     image: rabbitmq:3-management
@@ -31,6 +32,7 @@ services:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
     entrypoint: /usr/local/bin/cluster-entrypoint.sh
+    restart: always
 
   haproxy:
     image: haproxy:1.7
