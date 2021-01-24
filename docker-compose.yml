@@ -11,10 +11,10 @@ services:
   rabbitmq2:
     image: rabbitmq:3-management
     hostname: rabbitmq2
-    env_file:
-      .env
     depends_on:
       - rabbitmq1
+    env_file:
+      .env
     volumes:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
@@ -24,10 +24,10 @@ services:
   rabbitmq3:
     image: rabbitmq:3-management
     hostname: rabbitmq3
-    env_file:
-      .env
     depends_on:
       - rabbitmq1
+    env_file:
+      .env
     volumes:
       - ./cluster-entrypoint.sh:/usr/local/bin/cluster-entrypoint.sh
       - ./erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
